@@ -1,0 +1,35 @@
+; Top Design: "Project2_lib:Branchline Coupler:schematic"
+; Netlisted using Hierarchy Policy: "Standard"
+
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="Project2_lib:Branchline Coupler:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+model MSub1 MSUB H=10 mil Er=4.6 Mur=1 Cond=5.8e7 Hu=1e+36 um T=17 um TanD=0.02 Rough=0 um DielectricLossModel=1 FreqForEpsrTanD=1.0 GHz LowFreqForTanD=1.0 kHz HighFreqForTanD=1.0 THz RoughnessModel=2 
+MLIN2:TL1  N__0 N__7 Subst="MSub1" W=457.084 um L=5 mm Wall1=1.0E+30 um Wall2=1.0E+30 um Mod=1 
+MLIN2:TL2  N__3 N__18 Subst="MSub1" W=457.084 um L=5 mm Wall1=1.0E+30 um Wall2=1.0E+30 um Mod=1 
+MLIN2:TL3  N__12 N__8 Subst="MSub1" W=794.328 um L=13.278100 mm Wall1=1.0E+30 um Wall2=1.0E+30 um Mod=1 
+MLIN2:TL4  N__19 N__14 Subst="MSub1" W=794.328 um L=13.278100 mm Wall1=1.0E+30 um Wall2=1.0E+30 um Mod=1 
+MLIN2:TL5  N__5 N__9 Subst="MSub1" W=457.084 um L=5 mm Wall1=1.0E+30 um Wall2=1.0E+30 um Mod=1 
+MLIN2:TL6  N__1 N__11 Subst="MSub1" W=457.084 um L=5 mm Wall1=1.0E+30 um Wall2=1.0E+30 um Mod=1 
+MLIN2:TL7  N__10 N__2 Subst="MSub1" W=457.084 um L=13.278100 mm Wall1=1.0E+30 um Wall2=1.0E+30 um Mod=1 
+MLIN2:TL8  N__6 N__13 Subst="MSub1" W=457.084 um L=13.278100 mm Wall1=1.0E+30 um Wall2=1.0E+30 um Mod=1 
+Port:TermG1  N__0 0 Num=1 Z=50 Ohm Noise=yes 
+S_Param:SP1 CalcS=yes CalcY=no CalcZ=no GroupDelayAperture=1e-4 FreqConversion=no FreqConversionPort=1 StatusLevel=2 CalcNoise=no SortNoise=0 BandwidthForNoise=1.0 Hz DevOpPtLevel=0 SPSS_WSP=yes \
+SweepVar="freq" SweepPlan="SP1_stim" OutputPlan="SP1_Output" 
+
+SweepPlan: SP1_stim Start=1.5 GHz Stop=4.5 GHz Step=0.1 GHz 
+
+OutputPlan:SP1_Output \
+      Type="Output" \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2
+
+#load "python","LinearCollapse"
+Component Module="LinearCollapse" Type="ModelExtractor" NetworkRepresentation=2
+Port:TermG2  N__9 0 Num=2 Z=50 Ohm Noise=yes 
+Port:TermG3  N__11 0 Num=3 Z=50 Ohm Noise=yes 
+Port:TermG4  N__3 0 Num=4 Z=50 Ohm Noise=yes 
+MTEE_ADS:Tee1  N__7 N__12 N__10 Subst="MSub1" W1=457.084 um W2=794.328 um W3=457.084 um 
+MTEE_ADS:Tee2  N__8 N__5 N__6 Subst="MSub1" W1=457.084 um W2=457.084 um W3=794.328 um 
+MTEE_ADS:Tee3  N__19 N__18 N__2 Subst="MSub1" W1=457.084 um W2=457.084 um W3=794.328 um 
+MTEE_ADS:Tee4  N__1 N__14 N__13 Subst="MSub1" W1=457.084 um W2=794.328 um W3=457.084 um 
