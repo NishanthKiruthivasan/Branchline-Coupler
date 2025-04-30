@@ -4,8 +4,6 @@
 
 This project involves the design and simulation of a **3 GHz, 50Ω Branchline Coupler** using **Keysight ADS**. The goal is to implement a two-metal-layer PCB layout with **copper** as the conductive material and **FR4** as the dielectric substrate (εr = 4.6). The Branchline Coupler, also known as a quadrature hybrid, achieves equal power division with a **90° phase difference** between the through and coupled ports. The design flow incorporates impedance line calculations, schematic simulations, and full electromagnetic (EM) simulations.
 
----
-
 ## Design Methodology
 
 The design process is divided into four main phases:
@@ -51,7 +49,7 @@ The design process is divided into four main phases:
   - Isolation (S41): < -40 dB
   - Phase difference (S21/S31): 90°, as expected
 
----
+
 
 ## Result Analysis
 
@@ -63,7 +61,7 @@ The design process is divided into four main phases:
 | Isolation (S41)      | < -40 dB            |
 | Phase Difference     | 90° (S21 vs S31)    |
 
----
+
 
 ## Tools and Technologies Used
 
